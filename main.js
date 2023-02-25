@@ -4,6 +4,7 @@ const express = require('express');
 const PORT = process.env.PORT || 5000
 const UserModel = require('./Users')
 const catboost = require("catboost");
+var fs = require("fs");
 mongoose
     .connect('mongodb+srv://TIFTEL:5TgM4aVoo@cluster0.c06a4qf.mongodb.net/blog?retryWrites=true&w=majority')
     .then(() => {
@@ -13,7 +14,33 @@ mongoose
         console.log(err)
     })
 const app = express()
+app.get('/listUsers', function (req, res) {
+    fs.readFile( __dirname + "/" + "users.json", 'utf8', function (err, data) {
+        console.log( data );
+        res.end( data );
+    });
+})
 app.use(express.json())
+app.delete('/deleteUser', function (req, res) {
+
+
+    fs.readFile( __dirname + "/" + "users.json", 'utf8', function (err, data) {
+        data = JSON.parse( data );
+        delete data["user" + 2];
+
+        console.log( data );
+        res.end( JSON.stringify(data));
+    });
+}),
+    app.get('/:id', function (req, res) {
+        // First read existing users.
+        fs.readFile( __dirname + "/" + "users.json", 'utf8', function (err, data) {
+            let users = JSON.parse( data );
+            let user = users["user" + req.params.id]
+            console.log( user );
+            res.end( JSON.stringify(user));
+        });
+    }),
 app.post('/auth/123', async (req, res)=>{
     try{
 
