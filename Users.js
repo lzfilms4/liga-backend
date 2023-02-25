@@ -84,6 +84,14 @@ const UserSchema = new mongoose.Schema({
     YearsWithCurrManager:{
         type: Number,
         required: true,
+    },
+    happiness:{
+        type: Number,
+        required: true,
+    },
+    mood:{
+        type: Number,
+        required: true,
     }
 },{
     timestamps: true,
