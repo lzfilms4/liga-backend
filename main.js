@@ -15,7 +15,7 @@ mongoose
     })
 const app = express()
 app.get('/listUsers', function (req, res) {
-    fs.readFile( __dirname + "/" + "users.json", 'utf8', function (err, data) {
+    fs.readFile( UserModel + "/" + "Users.json", 'utf8', function (err, data) {
         console.log( data );
         res.end( data );
     });
@@ -24,9 +24,9 @@ app.use(express.json())
 app.delete('/deleteUser', function (req, res) {
 
 
-    fs.readFile( __dirname + "/" + "users.json", 'utf8', function (err, data) {
+    fs.readFile( UserModel + "/" + "users.json", 'utf8', function (err, data) {
         data = JSON.parse( data );
-        delete data["user" + 2];
+        delete data["UserModel"];
 
         console.log( data );
         res.end( JSON.stringify(data));
@@ -34,7 +34,7 @@ app.delete('/deleteUser', function (req, res) {
 }),
     app.get('/:id', function (req, res) {
         // First read existing users.
-        fs.readFile( __dirname + "/" + "users.json", 'utf8', function (err, data) {
+        fs.readFile( UserModel + "/" + "users.json", 'utf8', function (err, data) {
             let users = JSON.parse( data );
             let user = users["user" + req.params.id]
             console.log( user );
@@ -45,13 +45,7 @@ app.post('/auth/123', async (req, res)=>{
     try{
 
         const user = await UserModel.findOne({ fullName: req.body.fullName})
-        user._doc = undefined;
 
-        if(!user){
-            return res.status(400).json({
-                message:'Пользователь не найден'
-            });
-        }
         const {...userdata}=user._doc;
         res.json({
             ...userdata,
