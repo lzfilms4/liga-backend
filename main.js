@@ -4,7 +4,7 @@ const {MongoClient} = require('mongodb');
 const express = require('express');
 const PORT = process.env.PORT || 5000
 const UserModel = require('./Users')
-// const catboost = require("catboost");
+const catboost = require("catboost");
 const fs = require("fs");
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -28,11 +28,11 @@ const app = express()
 app.use(express.json())
 app.use(cors());
 app.post('/person/create', async (req, res) => {
-    // model = new catboost.Model();
-    // model.loadModel('modeltest.cbm');
-    // prediction = model.predict(
-    //     [[req.body.age, req.body.BusinessTravel, req.body.DailyRate, req.body.Department, req.body.Education, req.body.EducationField, req.body.Gender, req.body.HourlyRate, req.body.JobInvolvement, req.body.JobLevel, req.body.MaritalStatus, req.body.MonthlyIncome, req.body.NumCompaniesWorked, req.body.OverTime, req.body.StandardHours, req.body.TotalWorkingYears, req.body.YearsAtCompany, req.body.YearsInCurrentRole, req.body.YearsSinceLastPromotion, req.body.YearsWithCurrManager]],
-    //     [['Age','BusinessTravel','DailyRate','Department','Education','EducationField','Gender','HourlyRate','JobInvolvement','JobLevel','MaritalStatus','MonthlyIncome','NumCompaniesWorked','OverTime','StandardHours','TotalWorkingYears','YearsAtCompany','YearsInCurrentRole','YearsSinceLastPromotion','YearsWithCurrManager']]);
+    model = new catboost.Model();
+    model.loadModel('modeltest.cbm');
+    prediction = model.predict(
+        [[req.body.age, req.body.BusinessTravel, req.body.DailyRate, req.body.Department, req.body.Education, req.body.EducationField, req.body.Gender, req.body.HourlyRate, req.body.JobInvolvement, req.body.JobLevel, req.body.MaritalStatus, req.body.MonthlyIncome, req.body.NumCompaniesWorked, req.body.OverTime, req.body.StandardHours, req.body.TotalWorkingYears, req.body.YearsAtCompany, req.body.YearsInCurrentRole, req.body.YearsSinceLastPromotion, req.body.YearsWithCurrManager]],
+        [['Age','BusinessTravel','DailyRate','Department','Education','EducationField','Gender','HourlyRate','JobInvolvement','JobLevel','MaritalStatus','MonthlyIncome','NumCompaniesWorked','OverTime','StandardHours','TotalWorkingYears','YearsAtCompany','YearsInCurrentRole','YearsSinceLastPromotion','YearsWithCurrManager']]);
     try {
         const doc = new UserModel({
             fullName: req.body.fullName,
