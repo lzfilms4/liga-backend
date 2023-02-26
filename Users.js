@@ -111,7 +111,7 @@ const UserSchema = new mongoose.Schema({
 
     },
     mood:{
-        type: Number,
+        type: [Number],
         required: true,
 
     }
