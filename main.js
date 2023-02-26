@@ -33,7 +33,7 @@ app.post('/person/create', async (req, res) => {
     // prediction = model.predict(
     //     [[req.body.age, req.body.BusinessTravel, req.body.DailyRate, req.body.Department, req.body.Education, req.body.EducationField, req.body.Gender, req.body.HourlyRate, req.body.JobInvolvement, req.body.JobLevel, req.body.MaritalStatus, req.body.MonthlyIncome, req.body.NumCompaniesWorked, req.body.OverTime, req.body.StandardHours, req.body.TotalWorkingYears, req.body.YearsAtCompany, req.body.YearsInCurrentRole, req.body.YearsSinceLastPromotion, req.body.YearsWithCurrManager]],
     //     [['Age','BusinessTravel','DailyRate','Department','Education','EducationField','Gender','HourlyRate','JobInvolvement','JobLevel','MaritalStatus','MonthlyIncome','NumCompaniesWorked','OverTime','StandardHours','TotalWorkingYears','YearsAtCompany','YearsInCurrentRole','YearsSinceLastPromotion','YearsWithCurrManager']]);
-    // try {
+    try {
         const doc = new UserModel({
             fullName: req.body.fullName,
             age: req.body.age,
