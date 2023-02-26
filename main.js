@@ -72,7 +72,7 @@ app.post('/person/addMood', async (req, res) => {
         $push: { mood: req.body.mood }
       }).then((user) => {
         res.json(user)
-      })
+      }).catch(err => console.log(err))
 })
 
 app.get('/person/find', async (req, res) => {
@@ -80,12 +80,12 @@ app.get('/person/find', async (req, res) => {
         fullName: req.body.fullName,
       }).then((user) => {
         res.json(user)
-      })
+      }).catch(err => console.log(err))
 })
 app.get('/person/findall', async (req, res) => {
     await UserModel.find().then((users) => {
         res.json(users)
-      })
+      }).catch(err => console.log(err))
 })
 
 
