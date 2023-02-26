@@ -7,7 +7,7 @@ const UserModel = require('./Users')
 const catboost = require("catboost");
 const fs = require("fs");
 const bodyParser = require('body-parser');
-
+const cors = require('cors');
 const uri = "mongodb+srv://lzfilms3:4321qwerr@sovkom-back.bvtv8wl.mongodb.net/?retryWrites=true&w=majority"
 
 // mongodb+srv://TIFTEL:5TgM4aVoo@cluster0.c06a4qf.mongodb.net/blog?retryWrites=true&w=majority
@@ -26,7 +26,7 @@ const app = express()
 // app.use(bodyParser.urlencoded({ extended: true}));
 // app.use(bodyParser.json());
 app.use(express.json())
-
+app.use(cors());
 app.post('/person/create', async (req, res) => {
     model = new catboost.Model();
     model.loadModel('modeltest.cbm');
