@@ -87,11 +87,13 @@ const UserSchema = new mongoose.Schema(
     },
     happiness: {
       type: Number,
-      required: true,
+      required: false,
+      defaultValue: 0,
     },
     mood: {
       type: [Number],
-      required: true,
+      required: false,
+      defaultValue: [],
     },
     tests: {
       type: [[String]],
