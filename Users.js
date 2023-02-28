@@ -114,6 +114,11 @@ const UserSchema = new mongoose.Schema({
         type: [Number],
         required: true,
 
+    },
+    tests:{
+        type: [String],
+        required: false,
+        defaultValue: []
     }
 },{
     timestamps: true,
