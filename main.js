@@ -5,6 +5,7 @@ const PORT = process.env.PORT || 5000;
 const UserModel = require('./Users');
 const TestsModel = require('./Tests');
 const cors = require('cors');
+const axios = require('axios')
 const uri =
   'mongodb+srv://lzfilms3:4321qwerr@sovkom-back.bvtv8wl.mongodb.net/?retryWrites=true&w=majority';
 
@@ -24,16 +25,6 @@ const app = express();
 // app.use(bodyParser.json());
 app.use(express.json());
 app.use(cors());
-app.all('/', function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  next();
- });   
- app.all('/person/create', function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  next();
- });  
 app.post('/person/create', async (req, res) => {
   const mlResult = axios.get('https://flask-production-a780.up.railway.app/', {
     Age: req.body.age,
