@@ -6,7 +6,7 @@ const UserModel = require('./Users');
 const TestsModel = require('./Tests');
 const cors = require('cors');
 const axios = require('axios')
-const uri =''
+const uri ='mongodb+srv://lzfilms3:4321qwerr@sovkom-back.bvtv8wl.mongodb.net/?retryWrites=true&w=majority'
 mongoose
   .connect(uri)
   .then(() => {
